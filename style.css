@@ -2,6 +2,16 @@
     margin: 0px;
     padding: 0px;
 }
+#gameover{
+    font-size: 50px;
+    text-align: center;
+    background-color: rgb(42, 40, 40);
+    color: aqua;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 body{
     width: 100%;
     height: 100vh;

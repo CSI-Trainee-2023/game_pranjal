@@ -4,6 +4,9 @@ let stripe=document.getElementById("stripe");
 let traffic=document.getElementById("traffic");
 let score=document.getElementById("score");
 let high=document.getElementById("high");
+let road=document.getElementById("road");
+let home=document.getElementById("home");
+let gameover=document.getElementById("gameover");
 
 //variables for margins
 let lftmargin=car.offsetLeft;
@@ -83,6 +86,7 @@ function movetraffic()
 //function to end gane
 function endgame()
 {
+    gameover.style.display="block";
     sts=0;
     document.addEventListener("keydown",restart);
     document.removeEventListener("keydown",pause);
@@ -92,6 +96,8 @@ function endgame()
 function restart(e){
     if(e.key==" ")
     {
+        sts=1;
+        gameover.style.display="none";
         scoreCtr=0;
         score.innerHTML="SCORE: 00";
         car.style.marginLeft="300px";
@@ -113,6 +119,7 @@ function collision(a,b)
     let brect=b.getBoundingClientRect();
     return !((arect.bottom<=brect.top) || (arect.top>=brect.bottom) || (arect.right<=brect.left) || (arect.left>=brect.right))
 }
+
 
 //function to start game
 function start(e)
