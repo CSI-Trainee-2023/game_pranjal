@@ -20,6 +20,17 @@ body{
     margin-left: 50px;
     position: absolute;
 }
+#high{
+    background-color: rgb(3, 74, 74);
+    color: white;
+    line-height: 100px;
+    width: 400px;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 1000px;
+    position: absolute;
+}
 #road{
     background-color: rgb(32, 31, 31);
     height: 100vh;

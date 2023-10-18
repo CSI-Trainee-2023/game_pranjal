@@ -1,22 +1,29 @@
+//selectors
 let car=document.getElementById("car");
 let stripe=document.getElementById("stripe");
 let traffic=document.getElementById("traffic");
 let score=document.getElementById("score");
+let high=document.getElementById("high");
+
+//variables for margins
 let lftmargin=car.offsetLeft;
 let topmargin=car.offsetTop;
 let trafficmgn=traffic.offsetTop;
 let scoreCtr=0;
-let sts=1;
+let sts=0;
+let highCtr=0;
 
+//event listeners
 document.addEventListener("keydown", start);
 document.addEventListener("keydown", moveup);
 document.addEventListener("keydown", movedown);
 document.addEventListener("keydown", moveright);
 document.addEventListener("keydown", moveleft);
 
+//functions to move car
 function moveup(e)
 {
-    if(e.key=="ArrowUp" && topmargin>=50)
+    if(e.key=="ArrowUp" && topmargin>=50 && sts==1)
     {
         topmargin-=5;
         car.style.marginTop=topmargin+"px";
@@ -25,7 +32,7 @@ function moveup(e)
 
 function movedown(e)
 {
-    if(e.key=="ArrowDown" && topmargin<=500)
+    if(e.key=="ArrowDown" && topmargin<=500 && sts==1)
     {
         topmargin+=5;
         car.style.marginTop=topmargin+"px";
@@ -34,7 +41,7 @@ function movedown(e)
 
 function moveright(e)
 {
-    if(e.key=="ArrowRight" && lftmargin<=300)
+    if(e.key=="ArrowRight" && lftmargin<=300 && sts==1)
     {
         lftmargin+=5;
         car.style.marginLeft=lftmargin+"px";
@@ -43,13 +50,14 @@ function moveright(e)
 
 function moveleft(e)
 {
-    if(e.key=="ArrowLeft" && lftmargin>=0)
+    if(e.key=="ArrowLeft" && lftmargin>=0 && sts==1)
     {
         lftmargin-=5;
         car.style.marginLeft=lftmargin+"px";
     }
 }
 
+//function that move traffic
 function movetraffic()
 {
     if(collision(car,traffic))
@@ -65,8 +73,14 @@ function movetraffic()
     }
     scoreCtr++;
     score.innerHTML="SCORE:"+scoreCtr;
+    if(highCtr<scoreCtr)
+    {
+        highCtr=scoreCtr;
+        high.innerHTML="HIGH SCORE: "+highCtr;
+    }
 }
 
+//function to end gane
 function endgame()
 {
     sts=0;
@@ -74,12 +88,12 @@ function endgame()
     document.removeEventListener("keydown",pause);
 }
 
+//function to restart game
 function restart(e){
     if(e.key==" ")
     {
         scoreCtr=0;
         score.innerHTML="SCORE: 00";
-        sts=1;
         car.style.marginLeft="300px";
         car.style.marginTop="500px";
         traffic.style.marginLeft="0px"
@@ -91,16 +105,16 @@ function restart(e){
         document.removeEventListener("keydown",restart);
     }
 }
-function movestripe(){
-}
 
+//function for collision of car and traffic
 function collision(a,b)
 {
     let arect=a.getBoundingClientRect();
     let brect=b.getBoundingClientRect();
-    return !((arect.bottom<brect.top) || (arect.top>brect.bottom) || (arect.right<brect.left) || (arect.left>brect.right))
+    return !((arect.bottom<=brect.top) || (arect.top>=brect.bottom) || (arect.right<=brect.left) || (arect.left>=brect.right))
 }
 
+//function to start game
 function start(e)
 {
     if(e.key==" ")
@@ -112,6 +126,7 @@ function start(e)
     }
 }
 
+//function to pause game
 function pause(e){
     if(e.key==" ")
     {
@@ -121,6 +136,7 @@ function pause(e){
     }
 }
 
+//function that run game
 function gameplay()
 {
     if(sts)
