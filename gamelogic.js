@@ -14,7 +14,8 @@ let topmargin=car.offsetTop;
 let trafficmgn=traffic.offsetTop;
 let scoreCtr=0;
 let sts=0;
-let highCtr=0;
+let highCtr=localStorage.getItem("high score") || 0;
+high.innerHTML="HIGH SCORE: "+highCtr;
 
 //event listeners
 document.addEventListener("keydown", start);
@@ -80,6 +81,7 @@ function movetraffic()
     {
         highCtr=scoreCtr;
         high.innerHTML="HIGH SCORE: "+highCtr;
+        localStorage.setItem("high score",highCtr);
     }
 }
 

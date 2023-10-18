@@ -30,6 +30,16 @@ body{
     margin-left: 50px;
     position: absolute;
 }
+#rule{
+    background-color: brown;
+    height: 300px;
+    width: 500px;
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 30px;
+    text-align: justify;
+    font-size: larger;
+}
 #high{
     background-color: rgb(3, 74, 74);
     color: white;
